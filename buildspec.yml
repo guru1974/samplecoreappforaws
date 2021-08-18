@@ -9,8 +9,14 @@ phases:
     commands:
       - echo Build started on `date`
       - dotnet publish -c release -o ./build_output samplecoreappforaws/samplecoreappforaws.csproj
-      - 'dir ./build_output'
+      - dotnet test -c release ./samplecoretestforaws/samplecoretestforaws.csproj --logger trx --results-directory ./testresults
+reports:
+    DotnetTestExamples:
+        file-format: VisualStudioTrx
+        files:
+            - '**/*'
+        base-directory: './testresults'
 artifacts:
   files:
     - '**/*'
-  base-directory: '../src/build_output'
+  base-directory: '../src/build_output'  
