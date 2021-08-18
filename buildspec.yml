@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore samplecoreappforaws/samplecoreappforaws.csproj
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet publish -c release -o ./build_output samplecoreappforaws/samplecoreappforaws.csproj
+      - 'dir ./build_output'
+artifacts:
+  files:
+    - '**/*'
+  base-directory: '../src/build_output'
