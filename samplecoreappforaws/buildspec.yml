@@ -1,6 +1,4 @@
-﻿# Based on https://github.com/PrakashTrove/AWS-CodeBuild-NetCore/blob/master/buildspec.yml
-# AWS CodeBuild spec to build an Elastic Beanstalk artifact for AWS CodePipeline to deploy
-version: 0.2
+﻿version: 0.2
     
 phases:   
   install:
@@ -11,24 +9,18 @@ phases:
     commands:
       - echo 'inside pre-build - hello'
       - echo Restore started on `date`      
-      - dotnet restore samplecoreappforaws.csproj
-      
+      - dotnet restore samplecoreappforaws.csproj      
   build:
     commands:
       - echo 'inside build step hello'
       - echo Build started on `date`
-      - dotnet build samplecoreappforaws.csproj
-      
+      - dotnet build samplecoreappforaws.csproj      
   post_build:
     commands:
       - echo 'inside post-build step'
-      - echo Publish started on `date`
-      # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/dotnet-linux-platform-bundle-app.html
-      - dotnet publish -c Release -r linux-x64 samplecoreappforaws.csproj
-      
+      - echo Publish started on `date`      
+      - dotnet publish -c Release -r linux-x64 samplecoreappforaws.csproj      
 artifacts:
   files:
     - ./bin/Release/**/linux-x64/publish/**/*
     - ./bin/Release/**/linux-x64/publish/*
-  #base-directory: 
-  #discard-paths: no
