@@ -15,7 +15,7 @@ phases:
       
   build:
     commands:
-      - echo 'inside build step'
+      - echo 'inside build step hello'
       - echo Build started on `date`
       - dotnet build samplecoreappforaws.csproj
       
